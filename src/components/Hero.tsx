@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, CheckCircle2, FileText, Layers, Sparkles } from 'lucide-react';
+import { ArrowRight, ShieldCheck, CheckCircle2, FileText, Layers, Sparkles, Building2 } from 'lucide-react';
+import bisBuildingImg from '../assets/images/bureau_of_indian_standards_building_1790835632256.jpg';
 
 interface HeroProps {
   onAnalyzeClick: () => void;
@@ -92,10 +93,18 @@ export const Hero: React.FC<HeroProps> = ({ onAnalyzeClick, onExploreClick }) =>
               {/* Bureau of Indian Standards Building Container */}
               <div className="relative h-72 sm:h-84 w-full overflow-hidden rounded-xl bg-[#142A35]">
                 <img
-                  src="/src/assets/images/bureau_of_indian_standards_building_1790835632256.jpg"
+                  src={bisBuildingImg}
                   alt="Bureau of Indian Standards Official Building"
                   className="h-full w-full object-cover object-center filter contrast-105"
-                  referrerPolicy="no-referrer"
+                  loading="eager"
+                  onError={(e) => {
+                    const img = e.currentTarget;
+                    if (!img.src.includes('/images/')) {
+                      img.src = '/images/bureau_of_indian_standards_building_1790835632256.jpg';
+                    } else {
+                      img.style.display = 'none';
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#101820]/80 via-transparent to-black/20" />
                 
